@@ -1,0 +1,12 @@
+[Unit]
+Description=Check SSH SOCKS5 tunnel and fail over after confirmed failures
+After=ssh-socks-failover-tunnel.service
+Wants=ssh-socks-failover-tunnel.service
+
+[Service]
+Type=oneshot
+EnvironmentFile=%h/.config/ssh-socks-failover/runtime.env
+ExecStart=%h/.local/bin/ssh-socks-failover --config ${SSHF_CONFIG} guard --authorize-switch
+TimeoutStartSec=90s
+NoNewPrivileges=yes
+PrivateTmp=yes

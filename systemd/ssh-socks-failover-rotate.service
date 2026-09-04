@@ -1,0 +1,12 @@
+[Unit]
+Description=Rotate SSH SOCKS5 tunnel to the next reachable node
+After=ssh-socks-failover-tunnel.service
+Wants=ssh-socks-failover-tunnel.service
+
+[Service]
+Type=oneshot
+EnvironmentFile=%h/.config/ssh-socks-failover/runtime.env
+ExecStart=%h/.local/bin/ssh-socks-failover --config ${SSHF_CONFIG} rotate --authorize-switch
+TimeoutStartSec=90s
+NoNewPrivileges=yes
+PrivateTmp=yes

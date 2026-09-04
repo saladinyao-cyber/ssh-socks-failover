@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "nodes": [
+    {
+      "name": "node-a",
+      "host": "192.0.2.10",
+      "user": "${SSHF_NODE_A_USER}",
+      "ssh_port": 22,
+      "identity_file": "${SSHF_IDENTITY_FILE}",
+      "known_hosts_file": "${SSHF_KNOWN_HOSTS_FILE}",
+      "expected_egress_ip": "192.0.2.10"
+    },
+    {
+      "name": "node-b",
+      "host": "198.51.100.20",
+      "user": "${SSHF_NODE_B_USER}",
+      "ssh_port": 22,
+      "identity_file": "${SSHF_IDENTITY_FILE}",
+      "known_hosts_file": "${SSHF_KNOWN_HOSTS_FILE}",
+      "expected_egress_ip": "198.51.100.20"
+    },
+    {
+      "name": "node-c",
+      "host": "203.0.113.30",
+      "user": "${SSHF_NODE_C_USER}",
+      "ssh_port": 22,
+      "identity_file": "${SSHF_IDENTITY_FILE}",
+      "known_hosts_file": "${SSHF_KNOWN_HOSTS_FILE}",
+      "expected_egress_ip": "203.0.113.30"
+    }
+  ],
+  "local": {
+    "socks_host": "127.0.0.1",
+    "socks_port": 1080
+  },
+  "health_url": "https://api.ipify.org",
+  "tunnel_service": "ssh-socks-failover-tunnel.service",
+  "state_dir": "${SSHF_STATE_DIR}",
+  "policy": {
+    "failure_threshold": 3,
+    "switch_cooldown_seconds": 900,
+    "settle_seconds": 3,
+    "connect_timeout_seconds": 8,
+    "command_timeout_seconds": 20
+  }
+}

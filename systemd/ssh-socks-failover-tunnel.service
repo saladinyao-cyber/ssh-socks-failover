@@ -1,0 +1,16 @@
+[Unit]
+Description=Managed SSH dynamic SOCKS5 tunnel
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+EnvironmentFile=%h/.config/ssh-socks-failover/runtime.env
+ExecStart=%h/.local/bin/ssh-socks-failover --config ${SSHF_CONFIG} tunnel
+Restart=always
+RestartSec=5s
+NoNewPrivileges=yes
+PrivateTmp=yes
+
+[Install]
+WantedBy=default.target

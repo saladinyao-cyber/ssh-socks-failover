@@ -1,0 +1,12 @@
+[Unit]
+Description=Periodically check SSH SOCKS5 tunnel health
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=1min
+AccuracySec=15s
+Persistent=true
+Unit=ssh-socks-failover-guard.service
+
+[Install]
+WantedBy=timers.target
