@@ -1,0 +1,11 @@
+[Unit]
+Description=Rotate SSH SOCKS5 tunnel daily
+
+[Timer]
+OnCalendar=daily
+RandomizedDelaySec=30min
+Persistent=true
+Unit=ssh-socks-failover-rotate.service
+
+[Install]
+WantedBy=timers.target
